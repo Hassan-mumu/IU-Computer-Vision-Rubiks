@@ -2,6 +2,7 @@ import cv2
 import kociemba
 import numpy as np
 import serial
+from time import sleep
 
 
 class Constante:
@@ -11,7 +12,7 @@ class Constante:
     TOT_FACES = 6
     CANCEL = ord('z')
     QUIT = ord('q')
-    COM = "COM16"
+    COM = "COM8"
 
 
 def get_color_name(h, s, v):
@@ -318,7 +319,19 @@ def main():
                 print(cubeTableToString(cube_faces))
                 message = kociemba.solve(cubeTableToString(cube_faces))
                 print(message)
-                ser.write(message.encode('ascii'))
+
+                ser.write("START\n".encode('utf-8'))
+                ser.flush()
+
+                sleep(2)
+
+                ser.write((message + "\n").encode('utf-8'))
+                ser.flush()
+                
+                while True :
+                    if ser.readline().decode("utf-8") == "STOP":
+                        break   
+                
 
             except ValueError:
                 goodScan = False
@@ -337,13 +350,6 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
-
-    print("\nAll scanned cube faces:")
-    for i, face in enumerate(cube_faces):
-        print(f"Face {i+1}:")
-        for row in face:
-            print(row)
-
 
 if __name__ == "__main__":
     main()

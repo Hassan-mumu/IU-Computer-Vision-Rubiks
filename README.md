@@ -1,5 +1,6 @@
 # IU-Computer-Vision-Rubiks
-![alt text](image-1.png)
+![alt text](![WhatsApp Image 2025-03-11 at 10 56 36](https://github.com/user-attachments/assets/55c0f6bd-76fe-4395-bca8-ed0046e6148c)
+)
 Project Overview
 Our project involved designing and building an automated Rubik’s Cube solver robot in collaboration with Vietnamese students from Vietnam International University, Ho Chi Minh City. We combined Arduino programming with a Python-based color detection and solving algorithm to create a robot capable of automatically solving a Rubik’s Cube. The goal was for the robot to accurately identify cube colors, calculate the optimal solution, and physically execute all required moves independently.
 

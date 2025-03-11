@@ -10,7 +10,7 @@ Servo Serv3a; // Create a servo object named Serv3a
 Servo Serv3b; // Create a servo object named Serv3b
 Servo Serv4a; // Create a servo object named Serv4a
 Servo Serv4b; // Create a servo object named Serv4b
-int spd = 165;
+int spd = 200;
 int spda = 200;
 
 void ini() {
@@ -59,6 +59,7 @@ Serv4b.write(140);
 }
 
 void End() {    // Release the Rubik cube when type END
+delay(250);
 Serv1b.write(5);
 Serv2b.write(5);
 Serv3b.write(5);
@@ -76,6 +77,12 @@ void setup() {
   Serial.println("Type START to grab");
 }
 
+void home() {
+  Serv1a.write(home1a);
+  Serv2a.write(home2a);
+  Serv3a.write(home3a);
+  Serv4a.write(home4a);
+}
 
 void loop()
 {
@@ -89,6 +96,7 @@ void loop()
       // Get "END": release the Rubik cube
       if (data == "END") {
         solved = true;
+        Serial.println("STOP");
         End();
         Serial.print("START?");
       } else {
@@ -136,80 +144,72 @@ void loop()
           if (S[trash] == "F2") {    // Rotate Front Clockwise  twice
             Serial.println("Got F2");
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(xa1b);
             delay(spd);
             Serv1a.write(ngang1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
             Serv1a.write(dung1a); //rotate 2
-            delay(spd);
+            delay(spda);
             Serv1b.write(xa1b);
             delay(spd);
             Serv1a.write(ngang1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
-            delay(spd);
+            delay(spda);
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
           }
           else if (S[trash] == "F'") {    // Rotate Front counter-Clockwise
             Serial.println("Got F'");
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
             Serv1a.write(ngang1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(xa1b);
             delay(spd);
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
+
           }
           else if (S[trash] == "F'2") {    // Rotate Front counter-Clockwise
             Serial.println("Got F'2");
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
             Serv1a.write(ngang1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(xa1b);
             delay(spd);
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
             Serv1a.write(ngang1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(xa1b);
             delay(spd);
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
           else if (S[trash] == "R'") {    // Rotate right counter Clockwise
@@ -217,16 +217,13 @@ void loop()
             Serv4b.write(xa4b);
             delay(spd);
             Serv4a.write(ngang4a); // horizontal
-            delay(spd);
+            delay(spda);
             Serv4b.write(gan4b); // closer
             delay(spd);
             Serv4a.write(dung4a);
-            delay(spd);
+            delay(spda);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
           else if (S[trash] == "R'2") {    // Rotate right Clockwise twice
@@ -234,67 +231,58 @@ void loop()
             Serv4b.write(xa4b);
             delay(spd);
             Serv4a.write(ngang4a); // horizontal
-            delay(spd);
+            delay(spda);
             Serv4b.write(gan4b); // closer
             delay(spd);
             Serv4a.write(dung4a);
-            delay(spd);
+            delay(spda);
             Serv4b.write(xa4b);
             delay(spd);
             Serv4a.write(ngang4a); // horizontal
-            delay(spd);
+            delay(spda);
             Serv4b.write(gan4b); // closer
             delay(spd);
             Serv4a.write(dung4a);
-            delay(spd);
+            delay(spda);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
 
           else if (S[trash] == "R") {    // Rotate right counter Clockwise
             Serial.println("Got R");
             Serv4a.write(ngang4a); // horizontal
-            delay(spd);
+            delay(spda);
             Serv4b.write(xa4b);// AWAY
             delay(spd);
             Serv4a.write(dung4a);
-            delay(spd);
+            delay(spda);
             Serv4b.write(gan4b); // closer
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
           else if (S[trash] == "R2") {    // Rotate right Clockwise twice
             Serial.println("Got R2");
             Serv4a.write(ngang4a); // horizontal
-            delay(spd);
+            delay(spda);
             Serv4b.write(xa4b);// AWAY
             delay(spd);
             Serv4a.write(dung4a);
-            delay(spd);
+            delay(spda);
             Serv4b.write(gan4b); // closer
             delay(spd);
             Serv4a.write(ngang4a); // horizontal
-            delay(spd);
+            delay(spda);
             Serv4b.write(xa4b);// AWAY
             delay(spd);
             Serv4a.write(dung4a);
-            delay(spd);
+            delay(spda);
             Serv4b.write(gan4b); // closer
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
            
           }
@@ -309,10 +297,7 @@ void loop()
             Serv3a.write(dung3a);
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
           else if (S[trash] == "L2") {    // Rotate right Clockwise twice
@@ -334,10 +319,7 @@ void loop()
             Serv3a.write(dung3a);
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
 
@@ -352,10 +334,7 @@ void loop()
             Serv3b.write(gan3b); // closer
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
           else if (S[trash] == "L'2") {    // Rotate right Clockwise twice
@@ -377,10 +356,7 @@ void loop()
             Serv3b.write(gan3b); // closer
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
            
           }
@@ -395,10 +371,7 @@ void loop()
             Serv2a.write(dung2a);
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
           else if (S[trash] == "B'2") {    // Rotate right Clockwise twice
@@ -420,10 +393,7 @@ void loop()
             Serv2a.write(dung2a);
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
 
@@ -438,11 +408,7 @@ void loop()
             Serv2b.write(gan2b); // closer
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
-
+            home();
           }
           else if (S[trash] == "B2") {    // Rotate right Clockwise twice
             Serial.println("Got B2");
@@ -463,10 +429,7 @@ void loop()
             Serv2b.write(gan2b); // closer
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
            
           }
@@ -480,7 +443,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are now both close (body)
@@ -492,7 +455,7 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are all close (body)
@@ -500,7 +463,7 @@ void loop()
             // copy until here for U, U', D, D'
 
             Serv4a.write(ngang4a); //U movement is done change here if needed !!
-            delay(spd);
+            delay(spda);
 
 
             Serv3b.write(xa3b);
@@ -508,11 +471,11 @@ void loop()
             delay(spd);
 
             Serv4a.write(dung4a); // 4 back to position
-            delay(spd);
+            delay(spda);
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // they are now back horizontaly
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are now all close (body)
@@ -524,17 +487,13 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // they are now both horizontal
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are all back 2 position
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
-
+            home();
 
           }
           else if (S[trash] == "U2") {    // Rotate up Clockwise
@@ -545,7 +504,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are now both close (body)
@@ -557,7 +516,7 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are all close (body)
@@ -565,7 +524,7 @@ void loop()
             // copy until here for U, U', D, D'
 
             Serv4a.write(ngang4a); //U movement is done change here if needed !!
-            delay(spd);
+            delay(spda);
 
 
             Serv3b.write(xa3b);
@@ -573,27 +532,27 @@ void loop()
             delay(spd);
 
             Serv4a.write(dung4a); // 4 back to position
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
             delay(spd);
 
             Serv4a.write(ngang4a); //U movement is done 2
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(xa3b);
             Serv4b.write(xa4b); // 3 and 4 are now both away (body)
             delay(spd);
 
             Serv4a.write(dung4a); // 4 back to position
-            delay(spd);
+            delay(spda);
 
 
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // they are now back horizontaly
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are now all close (body)
@@ -605,17 +564,13 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // they are now both horizontal
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are all back 2 position
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
-
+            home();
 
           }
           
@@ -628,7 +583,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are now both close (body)
@@ -640,10 +595,10 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv4a.write(ngang4a);
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are all close (body)
@@ -651,7 +606,7 @@ void loop()
             // copy until here for U, U', D, D'
 
             Serv4a.write(dung4a); //U movement is done change here if needed !!
-            delay(spd);
+            delay(spda);
 
 
             Serv3b.write(xa3b);
@@ -660,7 +615,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // they are now back horizontaly
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are now all close (body)
@@ -672,17 +627,13 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // they are now both horizontal
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are all back 2 position
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
-
+            home();
 
           }
           else if (S[trash] == "U'2") {    // Rotate up Clockwise
@@ -693,7 +644,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are now both close (body)
@@ -705,10 +656,10 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv4a.write(ngang4a);
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are all close (body)
@@ -716,19 +667,19 @@ void loop()
             // copy until here for U, U', D, D'
 
             Serv4a.write(dung4a); //U movement is done change here if needed !!
-            delay(spd);
+            delay(spda);
 
             Serv4b.write(xa4b);
             delay(spd);
 
             Serv4a.write(ngang4a);
-            delay(spd);
+            delay(spda);
 
             Serv4b.write(gan4b);
             delay(spd);
 
             Serv4a.write(dung4a);
-            delay(spd);
+            delay(spda);
 
 
             Serv3b.write(xa3b);
@@ -737,7 +688,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // they are now back horizontaly
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are now all close (body)
@@ -749,16 +700,13 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // they are now both horizontal
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are all back 2 position
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
 
           }
@@ -770,7 +718,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are now both close (body)
@@ -782,7 +730,7 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are all close (body)
@@ -802,7 +750,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // they are now back horizontaly
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are now all close (body)
@@ -814,16 +762,13 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // they are now both horizontal
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are all back 2 position
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
 
           }
@@ -835,7 +780,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are now both close (body)
@@ -847,7 +792,7 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are all close (body)
@@ -880,10 +825,9 @@ void loop()
             delay(spd);
 
 
-
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // they are now back horizontaly
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are now all close (body)
@@ -895,16 +839,13 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // they are now both horizontal
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are all back 2 position
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
 
           }
@@ -916,7 +857,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are now both close (body)
@@ -928,7 +869,7 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv3a.write(ngang3a);
             delay(spd);
@@ -952,7 +893,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // they are now back horizontaly
-            delay(spd);
+            delay(spda);
 
             Serv3b.write(gan3b);
             Serv4b.write(gan4b); // they are now all close (body)
@@ -964,17 +905,13 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // they are now both horizontal
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are all back 2 position
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
-
+            home();
 
           }
           else if (S[trash] == "D2") {    // Rotate up Clockwise
@@ -985,7 +922,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are now both close (body)
@@ -997,7 +934,7 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // hands turn
-            delay(spd);
+            delay(spda);
 
             Serv3a.write(ngang3a);
             delay(spd);
@@ -1031,7 +968,7 @@ void loop()
 
             Serv1a.write(ngang1a);
             Serv2a.write(ngang2a); // they are now back horizontaly
-            delay(spd);
+            delay(spda);
 
 
             Serv3b.write(gan3b);
@@ -1045,16 +982,13 @@ void loop()
 
             Serv1a.write(dung1a);
             Serv2a.write(dung2a); // they are now both horizontal
-            delay(spd);
+            delay(spda);
 
             Serv1b.write(gan1b);
             Serv2b.write(gan2b); // they are all back 2 position
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
 
           }
@@ -1065,22 +999,19 @@ void loop()
           else if (S[trash] == "F'") {    // Rotate up counter-Clockwise
             Serial.println("Got F'");
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
             Serv1a.write(ngang1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(xa1b);
             delay(spd);
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           
           
@@ -1089,22 +1020,19 @@ void loop()
           else if (S[trash] == "F'") {    // Rotate up counter-Clockwise
             Serial.println("Got F'");
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
             Serv1a.write(ngang1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(xa1b);
             delay(spd);
             Serv1a.write(dung1a);
-            delay(spd);
+            delay(spda);
             Serv1b.write(gan1b);
             delay(spd);
 
-            Serv1a.write(160);
-            Serv2a.write(18);
-            Serv3a.write(167);
-            Serv4a.write(15);
+            home();
 
           }
           

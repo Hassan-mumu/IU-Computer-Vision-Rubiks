@@ -24,7 +24,7 @@ def get_color_name(h, s, v):
     print(h, s, v)
 
     # Check for white (low saturation, high brightness)
-    if s < 70:
+    if s < 80:
         color = "white"
     # Red can wrap around in hue (0 and near 180)
     elif h > 130 and s > 100:
@@ -136,17 +136,17 @@ def cubeTableToString(cube):
             for color in row:
                 match color:
                     case "green":
-                        facestring += "F"
+                        facestring += "B"
                     case "orange":
-                        facestring += "L"
-                    case "red":
                         facestring += "R"
+                    case "red":
+                        facestring += "L"
                     case "yellow":
                         facestring += "D"
                     case "white":
                         facestring += "U"
                     case "blue":
-                        facestring += "B"
+                        facestring += "F"
                     case "unknown":
                         facestring += "U"
         cubeFaces.append(facestring)
@@ -323,15 +323,17 @@ def main():
                 ser.write("START\n".encode('utf-8'))
                 ser.flush()
 
-                sleep(2)
+                sleep(0.5)
 
                 ser.write((message + "\n").encode('utf-8'))
+                ser.write(("END\n").encode('utf-8'))
                 ser.flush()
-                
-                while True :
+
+                while True:
                     if ser.readline().decode("utf-8") == "STOP":
-                        break   
-                
+                        sleep(0.1)
+                        print("finished")
+                        break
 
             except ValueError:
                 goodScan = False
@@ -350,6 +352,7 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
+
 
 if __name__ == "__main__":
     main()
